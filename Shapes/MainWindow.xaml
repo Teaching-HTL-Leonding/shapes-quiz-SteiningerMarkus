@@ -1,0 +1,57 @@
+﻿<Window x:Class="Shapes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shapes"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow, IsDesignTimeCreatable=False}"
+        Title="Shapes" Height="450" Width="800" MinWidth="600" MinHeight="160">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid Row="0" Margin="5 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="5 0" />
+                </Style>
+            </Grid.Resources> 
+            
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">Type:</Label>
+            <ComboBox Grid.Row="1" Grid.Column="0" Name="TypeCbx" SelectionChanged="TypeCbx_OnSelectionChanged">
+                <ComboBoxItem IsSelected="True">Rectangle</ComboBoxItem>
+                <ComboBoxItem>Triangle</ComboBoxItem>
+                <ComboBoxItem>Circle</ComboBoxItem>
+            </ComboBox>
+        
+            <Label Grid.Row="0" Grid.Column="1" Name="RadiusLbl" HorizontalAlignment="Center" Visibility="Hidden">Radius:</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="RadiusTbx" PreviewTextInput="ValidateNumericInput" Visibility="Hidden" />
+        
+            <Label Grid.Row="0" Grid.Column="2" Name="WidthLbl" HorizontalAlignment="Center">Width:</Label>
+            <TextBox Grid.Row="1" Grid.Column="2" Name="WidthTbx" PreviewTextInput="ValidateNumericInput" />
+        
+            <Label Grid.Row="0" Grid.Column="3" Name="HeightLbl" HorizontalAlignment="Center">Height:</Label>
+            <TextBox Grid.Row="1" Grid.Column="3" Name="HeightTbx" PreviewTextInput="ValidateNumericInput" />
+            
+            <Button Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Click="AddBtn_OnClick">Add</Button>
+        </Grid>
+        
+        <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding Shapes}" ColumnWidth="*" />
+        
+        <Label Grid.Row="2" Name="AreaSumLbl" HorizontalAlignment="Right" />
+    </Grid>
+</Window>
